@@ -1,0 +1,74 @@
+<%- include("partials/header") -%>
+<h1 class="text-center bg-warning p-2">TODO App</h1>
+
+
+
+<div class="row d-flex justify-content-center">
+    
+    <div class="col-md-5 ">
+              
+      <!-- add todo form  -->
+      <form action="/todos" method="POST" id="new-todo-form">
+            <div class="form-group">
+            
+              <input type="text" class="form-control"   name="tdname" placeholder="Add new todo" required>
+        
+            <button type="submit" class="btn btn-primary btn-lg btn-block mt-2">Add</button>
+           
+          </div>
+
+          </form >
+<!-- end -->
+
+
+<ul class="list-group mt-5" id="todo-list">
+          
+            
+            <% todos.forEach(function(todo){%>
+
+      <li class="list-group-item">
+          
+        <!--edit form  -->
+   <form action="/todos/<%=todo.id%>" method="POST" class="edit-todo-form">
+        <div class="form-group">
+          <input type="text" class="form-control" name="tdname" value="<%=todo.name%>" required>
+        <button type="submit"  class="btn btn-primary btn-md mt-2 ">Update</button>
+          </div>
+
+  </form >
+  <!-- end -->
+
+              <em> <%=todo.name%> </em>           
+       <div class="float-right">
+            
+              <button  class="btn btn-warning btn-sm  m-1 edit-button">Edit</button> 
+              <!-- delete form  -->
+              <form style="display: inline;" action="/todos/<%=todo.id%>" method="POST" class="delete-todo-form">
+              
+                <button type="submit" class="btn btn-danger btn-sm  m-1">Delete</button>
+            
+              </form>
+          <!-- end -->
+         </div>  
+            
+          
+      </li>
+                   
+             <% }); %>
+            
+                   
+      </ul>
+                  
+
+
+
+
+ </div>
+</div>
+
+
+
+    
+  
+
+<%- include("partials/footer") -%>
